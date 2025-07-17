@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>DELTARUNE</title>
+        <link rel="stylesheet" href="style.css"/>
+        <link rel="icon" href="fav.ico"/>
+        <style>
+            a:visited {
+                color: yellow;
+            }
+
+            a:hover {
+                color: rgba(255, 255, 0, 0.75);
+            }
+
+            a:active {
+                color: yellow;
+            }
+
+            .chapter-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .chapter-buttons.hidden {
+                display: none;
+            }
+
+            .game-frame {
+                width: 100%;
+                height: 600px;
+                margin-top: 20px;
+                border: none;
+            }
+
+            .game-frame.hidden {
+                display: none;
+            }
+
+            .button {
+                background: #333;
+                color: white;
+                border: 2px solid #555;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-family: inherit;
+                font-size: 16px;
+                transition: all 0.3s ease;
+            }
+
+            .button:hover {
+                background: #555;
+                border-color: #777;
+            }
+
+            .button:active {
+                background: #222;
+            }
+
+            .button-group {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <img src="deltarune_logo.png" alt="DELTARUNE Logo" class="logo"/>
+            <p class="desc">Choose your chapter.</p>
+            <div class="button-group">
+                <button class="button" id="toggleChaptersBtn">Chapters</button>
+                <div id="chapterButtons" class="chapter-buttons hidden">
+                    <button onclick="loadChapter(1)" class="button">Chapter 1</button>
+                    <button onclick="loadChapter(2)" class="button">Chapter 2</button>
+                    <button onclick="loadChapter(3)" class="button">Chapter 3</button>
+                    <button onclick="loadChapter(4)" class="button">Chapter 4</button>
+                </div>
+            </div>
+            <div id="gameFrame" class="game-frame hidden"></div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Toggle chapters visibility
+                const toggleBtn = document.getElementById('toggleChaptersBtn');
+                const chapterButtons = document.getElementById('chapterButtons');
+                
+                if (toggleBtn && chapterButtons) {
+                    toggleBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        chapterButtons.classList.toggle('hidden');
+                    });
+                }
+            });
+
+            // Load chapter function
+            function loadChapter(chapterNum) {
+                try {
+                    // Redirect to the appropriate chapter page
+                    switch(chapterNum) {
+                        case 1:
+                            window.location.href = 'chapter1/index.html';
+                            break;
+                        case 2:
+                            window.location.href = 'chapter2/index.html';
+                            break;
+                        case 3:
+                            window.location.href = 'chapter3/index.html';
+                            break;
+                        case 4:
+                            window.location.href = 'chapter4/index.html';
+                            break;
+                        default:
+                            console.error('Invalid chapter number:', chapterNum);
+                    }
+                } catch (error) {
+                    console.error('Error loading chapter:', error);
+                }
+            }
+        </script>
+    </body>
+</html>
